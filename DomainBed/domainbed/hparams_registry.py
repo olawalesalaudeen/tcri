@@ -75,16 +75,16 @@ def _hparams(algorithm, dataset, random_seed, ablat_TCRI_TCRI=False,
 
     elif "TCRI" in algorithm:
         if ablat_TCRI_TCRI:
-            _hparam('beta', 0., lambda r: 0.)
-            _hparam('beta_anneal_iters', 0, lambda r: 0)
+            _hparam('tcri_beta', 0., lambda r: 0.)
+            _hparam('tcri_beta_anneal_iters', 0, lambda r: 0)
         else:
-            _hparam('irm_lambda', 1e2, lambda r: 10**r.uniform(-1, 5))
-            _hparam('beta_anneal_iters', 500,
+            _hparam('tcri_beta', 1e2, lambda r: 10**r.uniform(-1, 5))
+            _hparam('tcri_beta_anneal_iters', 500,
                 lambda r: int(10**r.uniform(2.5, 5)))
         if ablat_TCRI_TIC:
-            _hparam('alpha', 0., lambda r: 0.)
+            _hparam('tcri_alpha', 0., lambda r: 0.)
         else:
-            _hparam('alpha', 1., lambda r: 1.)
+            _hparam('tcri_alpha', 1., lambda r: 1.)
 
     elif algorithm == "Mixup":
         _hparam('mixup_alpha', 0.2, lambda r: 10**r.uniform(-1, 1))

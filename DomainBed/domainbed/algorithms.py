@@ -213,8 +213,8 @@ class AbstractTCRI(ERM):
 
     def update(self, minibatches, unlabeled=None):
         device = "cuda" if minibatches[0][0].is_cuda else "cpu"
-        penalty_weight = (self.hparams['beta'] if self.update_count
-                          >= self.hparams['beta_anneal_iters'] else
+        penalty_weight = (self.hparams['tcri_beta'] if self.update_count
+                          >= self.hparams['tcri_beta_anneal_iters'] else
                           1.0)
 
         nll = 0. # causal (domain general nll)
@@ -247,11 +247,10 @@ class AbstractTCRI(ERM):
         tcri_penalty /= len(minibatches)
         tic_nll /= len(minibatches)
 
-        loss = nll + self.hparams['alpha']*tic_nll + \
+        loss = nll + self.hparams['tcri_alpha']*tic_nll + \
           penalty_weight * tcri_penalty
 
-        # if self.update_count == self.hparams['beta_anneal_iters']:
-        if self.update_count == self.hparams['beta_anneal_iters']:
+        if self.update_count == self.hparams['tcri_beta_anneal_iters']:
             # Reset Adam, because it doesn't like the sharp jump in gradient
             # magnitudes that happens at this step.
             self.optimizer = torch.optim.Adam(

@@ -47,7 +47,7 @@ new_label_dict = {**new_pos, **new_neg}
 
 #########################################################
 # p(y=1 | dom=dom_1) -- confound spuriousness strength
-confound_strength = 1.
+confound_strength = args.confound_strength
 #########################################################
 
 # Collect samples from original PACS
