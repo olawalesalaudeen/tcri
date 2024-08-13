@@ -1,5 +1,7 @@
 # tcri
-Code and data for Olawale Salaudeen, Sanmi Koyejo, "Adapting to Shifts in Latent Confounders using Observed Concepts and Proxies" International Conference on Artificial Intelligence and Statistics, 2024
+Code and data for Olawale Salaudeen, Sanmi Koyejo, "Causally Inspired Regularization Enables Domain General Representations" International Conference on Artificial Intelligence and Statistics, 2024
+
+https://arxiv.org/abs/2404.16277
 
 ## Create Spurious PACS
 Spurious PACS is a version of PACS that induces a stronger distribution shift by spuriously correlating original PACS domains with a binary label.
